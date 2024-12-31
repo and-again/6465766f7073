@@ -1,0 +1,75 @@
+#Step 1: Specify the base image
+FROM alpine
+
+#Step 2: Download and install dependencies
+RUN apk add --update redis
+
+#Step 3: Setup startup command
+CMD ["redis-server"]
+
+# Other commands
+docker images
+docker pull <image_name>
+docker rmi <image_id_or_name>
+docker build -t <image_name> .
+docker run <image_name>
+docker run -p <host_port>:<container_port> <image_name> # Run a Container with Port Mapping
+docker ps
+docker ps -a
+docker start <container_id_or_name>
+docker rm <container_id_or_name>
+docker logs <container_id_or_name>
+docker volume ls
+docker system prune
+
+# Use an official Python runtime as the base image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the application files to the container
+COPY . /app
+
+# Install application dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the application port
+EXPOSE 5000
+
+# Command to run the application
+CMD ["python", "app.py"]
+
+---
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return "Hello, World!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+---
+
+requirements.txt
+flask
+
+---
+
+docker build -t sample-web-app .
+docker run -p 5000:5000 sample-web-app
+---
+
+echo from flask import Flask > app.py
+echo. >> app.py
+echo app = Flask(__name__) >> app.py
+echo. >> app.py
+echo @app.route('/') >> app.py
+echo def hello(): >> app.py
+echo     return "Hello, World!" >> app.py
+echo. >> app.py
+echo if __name__ == '__main__': >> app.py
+echo     app.run(host='0.0.0.0', port=5000) >> app.py

@@ -1,0 +1,10 @@
+# Project Repo
+https://github.com/sunny-shaw/retail-store.git
+
+# Analysis Properties
+sonar.projectKey=retail-store-jenkins-project
+sonar.projectName=retail-store-jenkins-project
+sonar.projectVersion=1.0
+sonar.language=java
+sonar.tests=src/test/java
+sonar.sources=src/main/java
